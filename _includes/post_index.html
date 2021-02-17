@@ -1,0 +1,14 @@
+<div class="post-index">
+  <h4>{{ site.t[page.locale].post-index }}</h4>
+  <div class="line2p"></div>
+  {% for category in site.t[page.locale].categories %}
+    <a class="category" href="{{ category[1].url }}">{{ category[1].name }}</a>
+    <div id="{{ category[1].raw }}" class="posts">
+      {% assign language_posts=site.posts | where:"locale", page.locale %}
+      {% assign posts=language_posts | where:"category", category[1].raw %}
+      {% for post in posts %}
+        <a class="post" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>

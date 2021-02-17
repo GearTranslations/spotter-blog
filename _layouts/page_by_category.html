@@ -1,0 +1,111 @@
+---
+layout: base
+---
+
+<div class="welcome-header">
+  <div class="container">
+    <h1>{{ site.t[page.locale].welcome }}</h1>
+  </div>
+</div>
+
+<div class="container">
+  <div class="categories">
+    <h3>{{ site.t[page.locale].categories-title }}</h3>
+    <ul>
+      <li><a href="{{ site.t[page.locale].all.url }}">{{ site.t[page.locale].all.name }}</a></li>
+    {% for category in site.t[page.locale].categories %}
+      <li><a href="{{ category[1].url }}">{{ category[1].name }}</a></li>
+    {% endfor %}
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      {% assign language_posts=paginator.posts %}
+      {% assign posts=language_posts | where:"category", page.slug %}
+      <div class="posts-container">
+        <div class="posts-list container">
+          <div class="row mt-3 mb-5">
+          {% for post in posts %}
+            {% assign modulo = forloop.index | modulo: 3 %}
+            {% if forloop.index > 1 and modulo == 1 %}</div><div class="row mt-3 mb-5">{% endif %}
+            <div class="col-md-4">
+              <article class="post-preview">
+                <a href="{{ post.url | prepend: site.baseurl }}"></a>
+                {% if post.share-img %}
+                  <div class="post-image">
+                    <img src="{{ site.baseurl }}{{ post.share-img }}"/>
+                  </div>
+                {% endif %}
+                <div class="post-content">
+              	  <div class="post-header">
+                    <div class="avatar">
+                      <img src="{{ site.baseurl }}/img/favicon.png">
+                    </div>
+                    <h2>{{ post.title }}</h2>
+                  </div>
+
+              	  <!-- {% if post.subtitle %}
+              	  <h3 class="post-subtitle">
+              	    {{ post.subtitle }}
+              	  </h3>
+                  {% endif %} -->
+                  <p>
+                    {{ post.content | strip_html | truncatewords: 20 }}
+                  </p>
+                </div>
+               </article>
+            </div>
+          {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% if paginator.total_pages > 1 %}
+      <ul class="pager main-pager">
+        {% if paginator.previous_page %}
+        <li class="previous">
+          <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Siguente post</a>
+        </li>
+        {% endif %}
+        {% if paginator.next_page %}
+        <li class="next">
+          <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Post anterior &rarr;</a>
+        </li>
+        {% endif %}
+      </ul>
+      {% endif %}
+	    {% if page.comments %}
+        <div class="disqus-comments">
+	        {% include disqus.html %}
+        </div>
+	    {% endif %}
+    </div>
+  </div>
+</div>
+
+<div class="subscribe-to-newsletter">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <h2>{{ site.t[page.locale].newsletter.title }}</h2>
+        <p>{{ site.t[page.locale].newsletter.subtitle }}</p>
+        <div>
+          <form id='subscribe-newsletter' action='{{site.mailchimp-list}}' autocomplete='off' method='post'>
+            <input id='mce-NAME' placeholder='Name' name='NAME' type='text' required />
+            <input id='mce-EMAIL' placeholder='Email' name='EMAIL' type='email' required />
+            <input type='text' value='N' name='SEGMENT' class='hidden' id='mce-SEGMENT'>
+            <div class='padding-bottom-5'>
+              <input type='checkbox' name='TERMS' id='mce-TERMS' required> {{ site.t[page.locale].newsletter.accept-terms }} </input>
+            </div>
+            <input id='submit-newsletter' class='button' name='submit' type='submit' value='{{ site.t[page.locale].newsletter.submit }}'></input>
+            <div id='invalid-email-message' class='error display-none'> {{ site.t[page.locale].newsletter.invalid-email-message }} </div>
+            <div id='thank-you' class='correct display-none'> {{ site.t[page.locale].newsletter.thank-you }} </div>
+            <div id='already-subscribed' class='error display-none'> {{ site.t[page.locale].newsletter.already-subscribed }} </div>
+            <div id='terms-not-accepted' class='error display-none'> {{ site.t[page.locale].newsletter.terms-not-accepted }} </div>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-6 text-align-center pt-5">
+        <img src="{{ site.baseurl }}/img/slider.svg" width="400">
+      </div>
+    </div>
+  </div>
+</div>

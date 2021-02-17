@@ -1,0 +1,153 @@
+---
+layout: base
+---
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8" role="main">
+      <div class="row">
+        <div class="col-md-12">
+          {% if page.share-img %}
+            <div class="post-image">
+              <img src="{{ site.baseurl }}{{ page.share-img }}"/>
+            </div>
+          {% endif %}
+
+          <article role="main" class="blog-post">
+            {% if page.category.size > 0 %}
+              <div class="blog-tags">
+                {{ site.t[page.locale].posts.category }}:
+                {% if site.link-tags %}
+                {% for tag in page.category %}
+                  {% for category in site.t[page.locale].categories %}
+                    {% if tag == category[1].raw %}
+                      <a href="{{ category[1].url }}">{{ category[1].name }}</a>
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+                {% else %}
+                  {{ page.categories | join: ", " }}
+                {% endif %}
+              </div>
+            {% endif %}
+            {{ content }}
+            {% if page.social-share %}
+              {% include social-share.html %}
+            {% endif %}
+          </article>
+
+          <ul class="pager blog-pager">
+            {% for post in site.posts %}
+              {% if post.locale == page.locale %}
+                {% if prev %}
+                  <li class="previous">
+                    <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">&larr; Post anterior</a>
+                  </li>
+                {% endif %}
+                {% assign prev = false %}
+                {% if post.id == page.id %}
+                  {% assign prev = true %}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+            {% for post in site.posts reversed %}
+              {% if post.locale == page.locale %}
+                {% if next %}
+                  <li class="next">
+                    <a href="{{ post.url | prepend: site.baseurl | replace: '//', '/' }}">Siguiente post &rarr;</a>
+                  </li>
+                  {% break %}
+                {% endif %}
+                {% assign next = false %}
+                {% if post.id == page.id %}
+                  {% assign next = true %}
+                {% endif %}
+              {% endif %}
+            {% endfor %}
+          </ul>
+    <!--
+          <ul class="pager blog-pager">
+            {% if page.previous.url %}
+            <li class="previous">
+              <a href="{{ page.previous.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.previous.title}}">&larr; Previous Post</a>
+            </li>
+            {% endif %}
+            {% if page.next.url %}
+            <li class="next">
+              <a href="{{ page.next.url | prepend: site.baseurl | replace: '//', '/' }}" data-toggle="tooltip" data-placement="top" title="{{page.next.title}}">Next Post &rarr;</a>
+            </li>
+            {% endif %}
+          </ul>
+    -->
+          {% if page.comments %}
+            <div class="disqus-comments">
+              {% include disqus.html %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4" role="main">
+      <div class="row">
+        <div class="col-md-12">
+          <h3>{{ site.t[page.locale].newsletter.subscribe }}</h3>
+          <form id='subscribe-newsletter' action='{{site.mailchimp-list}}' autocomplete='off' method='post'>
+            <input id='mce-NAME' placeholder='Name' name='NAME' type='text' required />
+            <input id='mce-EMAIL' placeholder='Email' name='EMAIL' type='email' required />
+            <input type='text' value='N' name='SEGMENT' class='hidden' id='mce-SEGMENT'>
+            <div class='padding-bottom-5'>
+              <input type='checkbox' name='TERMS' id='mce-TERMS' required> {{ site.t[page.locale].newsletter.accept-terms }} </input>
+            </div>
+            <input id='submit-newsletter' class='button' name='submit' type='submit' value='{{ site.t[page.locale].newsletter.submit }}'></input>
+            <div id='invalid-email-message' class='error display-none'> {{ site.t[page.locale].newsletter.invalid-email-message }} </div>
+            <div id='thank-you' class='correct display-none'> {{ site.t[page.locale].newsletter.thank-you }} </div>
+            <div id='already-subscribed' class='error display-none'> {{ site.t[page.locale].newsletter.already-subscribed }} </div>
+            <div id='terms-not-accepted' class='error display-none'> {{ site.t[page.locale].newsletter.terms-not-accepted }} </div>
+          </form>
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-md-12">
+          <h3>{{ site.t[page.locale].posts.categories }}</h3>
+          <ul class="categories-list">
+            {% for category in site.t[page.locale].categories %}
+              <li><a class="category" href="{{ category[1].url }}">{{ category[1].name }}</a></li>
+            {% endfor %}
+          <ul>
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-md-12">
+          <a href="https://spotter.geartranslations.com?locale={{ page.locale }}" target="_blank">
+            <img src="{{ site.baseurl }}/img/banner.jpg">
+          </a>
+        </div>
+      </div>
+      <div class="row my-4">
+        <div class="col-md-12">
+          <h3>{{ site.t[page.locale].posts.recent }}</h3>
+          <div class="recent-posts py-3">
+            {% assign language_posts=site.posts | where:"locale", page.locale %}
+            {% for post in language_posts limit:5 %}
+              <div class="row my-3 px-3">
+                <a class="post" href="{{ post.url | prepend: site.baseurl }}">
+                  <div class="col-md-5">
+                    {% if post.share-img %}
+                      <div class="post-image">
+                        <img src="{{ site.baseurl }}{{ post.share-img }}" width="150"/>
+                      </div>
+                    {% endif %}
+                  </div>
+                  <div class="col-md-7">
+                    <p>{{ post.title }}</p>
+                    <p class="date">Posted on {{ post.date | date: "%B %-d, %Y" }}</p>
+                  </div>
+                </a>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

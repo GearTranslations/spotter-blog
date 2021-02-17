@@ -1,0 +1,61 @@
+---
+layout: page
+locale: es
+subtitle: Crea un sistema de vigilancia de tus competidores, convierte datos en conocimiento y toma ventaja en tu mercado
+pagination:
+  enabled: true
+  locale: es
+---
+
+{% assign posts=paginator.posts %}
+<div class="posts-container">
+  <div class="posts-list container">
+    <div class="row mt-3 mb-5">
+    {% for post in posts %}
+      {% assign modulo = forloop.index | modulo: 3 %}
+      {% if forloop.index > 1 and modulo == 1 %}</div><div class="row mt-3 mb-5">{% endif %}
+      <div class="col-md-4">
+        <article class="post-preview">
+          <a href="{{ post.url | prepend: site.baseurl }}"></a>
+          {% if post.share-img %}
+            <div class="post-image">
+              <img src="{{ site.baseurl }}{{ post.share-img }}"/>
+            </div>
+          {% endif %}
+          <div class="post-content">
+        	  <div class="post-header">
+              <div class="avatar">
+                <img src="{{ site.baseurl }}/img/favicon.png">
+              </div>
+              <h2>{{ post.title }}</h2>
+            </div>
+
+        	  <!-- {% if post.subtitle %}
+        	  <h3 class="post-subtitle">
+        	    {{ post.subtitle }}
+        	  </h3>
+            {% endif %} -->
+            <p>
+              {{ post.content | strip_html | truncatewords: 20 }}
+            </p>
+          </div>
+         </article>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+  {% if paginator.total_pages > 1 %}
+  <ul class="pager main-pager">
+    {% if paginator.previous_page %}
+    <li class="previous">
+      <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Siguientes posts</a>
+    </li>
+    {% endif %}
+    {% if paginator.next_page %}
+    <li class="next">
+      <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Anteriores posts &rarr;</a>
+    </li>
+    {% endif %}
+  </ul>
+  {% endif %}
+</div>

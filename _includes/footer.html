@@ -1,0 +1,31 @@
+<footer>
+  <div class="container">
+    <div class="row py-4">
+      <div class="col-lg-12 text-align-center">
+        <a href="{{ site.t[page.locale].legal.terms-and-conditions-link }}" target="_blank">{{ site.t[page.locale].legal.terms-and-conditions }}</a>
+        <span class="px-2">|</span>
+        <a href="{{ site.t[page.locale].legal.cookies-policy-link }}" target="_blank">{{ site.t[page.locale].legal.cookies-policy }}</a>
+        <span class="px-2">|</span>
+        <a href="{{ site.t[page.locale].legal.privacy-policy-link }}" target="_blank">{{ site.t[page.locale].legal.privacy-policy }}</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          {{ site.author.name }}
+          &nbsp;&bull;&nbsp;
+          {{ site.time | date: '%Y' }}
+
+          {% if site.url-pretty %}
+          &nbsp;&bull;&nbsp;
+          <a href="{{ site.t[page.locale].menu.website.url }}" target="_blank">{{ site.t[page.locale].menu.website.name }}</a>
+          {% endif %}
+        </p>
+          <!-- Please don't remove this, keep my open source work credited :) -->
+        <p class="theme-by text-muted">
+          Theme by <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

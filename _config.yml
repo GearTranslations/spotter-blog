@@ -1,0 +1,299 @@
+# --- General options --- #
+
+# url is the full website URL
+# baseurl is the website's URL without the hostname
+
+# If you are building a simple GitHub user page (http://username.github.io) then use these settings:
+website-url: "http://www.spotter.biz"
+
+#For production
+url: "http://www.spotter.biz"
+baseurl: "/blog"
+
+# For local testing
+#url: "0.0.0.0:4000"
+#baseurl: ""
+#baseurl-index: "/"
+
+# Name of website
+title: Spotter Blog
+
+# Short description of your site
+description: Intelligent Technical Translation in all languages
+
+# --- Navigation bar options --- #
+
+# Image to show in the navigation bar - image must be a square (width = height)
+# Remove this parameter if you don't want an image in the navbar
+# avatar: "/img/gear-avatar.jpg"
+
+# Future dated posts: not published
+future: false
+
+# --- Footer options --- #
+
+# Change all these values or delete the ones you don't want.
+# Important: you must keep the "name" parameter, everything else you can remove
+author:
+  name: Spotter
+  email: "sales@geartranslations.com"
+  facebook: GearTranslations
+  twitter: gear_t
+  google-plus: +Gear Translations Global
+  linkedin: GearTranslations
+
+# Select which links to show in the footer
+footer-links-active:
+  facebook: false
+  email: false
+  twitter: false
+  linkedin: false
+
+# Select which share links to show in posts
+share-links-active:
+  twitter: true
+  facebook: true
+  google: true
+  linkedin: true
+
+# How to display the link to the website in the footer
+# Remove this if you don't want a link in the footer
+url-pretty: "Spotter website"  # eg. "deanattali.com/beautiful-jekyll"
+
+# --- Misc --- #
+# Fill in your Disqus shortname (NOT the userid) if you want to support Disqus comments
+#disqus: ""
+
+# Fill in your Google Analytics ID to track your website using GA
+#google_analytics: ""
+
+# Facebook App ID
+# fb_app_id: ""
+
+# Excerpt Word Length
+# Truncates the excerpt to the specified number of words on the index page
+excerpt_length: 50
+
+# --- Don't need to touch anything below here (but you can if you want) --- #
+
+# Output options (more information on Jekyll's site)
+timezone: "Europe/London"
+markdown: kramdown
+highlighter: rouge
+permalink: /:year-:month-:day-:title/
+
+pagination:
+  enabled: true
+  debug: false
+  collection: 'posts'
+  per_page: 6
+  permalink: '/page/:num/' # Pages are index.html inside this folder (default)
+  title: ':title'
+  limit: 0
+  sort_field: 'date'
+  sort_reverse: true
+  category: 'posts'
+  #locale: 'en'
+  trail:
+    before: 2
+    after: 2
+
+
+kramdown:
+  input: GFM
+
+# Default YAML values (more information on Jekyll's site)
+defaults:
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      comments: true  # add comments to all blog posts
+      social-share: true # add social media sharing buttons to all blog posts
+  -
+    scope:
+      path: "" # all files
+    values:
+      layout: "page"
+      show-avatar: true
+
+# Use tags pages (not recommended if you are deploying via GitHub pages, only set to true if deploying locally with ruby)
+link-tags: true
+
+# Exclude these files from production site
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - CNAME
+  - Vagrantfile
+
+# prose.io config
+prose:
+  rooturl: '_posts'
+  media: 'img'
+  ignore:
+    - 404.html
+    - LICENSE
+    - feed.xml
+    - _config.yml
+    - /_layouts
+    - /_includes
+    - /css
+    - /img
+    - /js
+  metadata:
+    _posts:
+      - name: "layout"
+        field:
+          element: "hidden"
+          value: "post"
+      - name: "title"
+        field:
+          element: "text"
+          label: "Post title"
+          placeholder: "Title"
+          alterable: true
+      - name: "subtitle"
+        field:
+          element: "textarea"
+          label: "Subtitle"
+          placeholder: "A description of your post."
+          alterable: true
+      - name: "date"
+        field:
+          element: "text"
+          label: "Date"
+          help: "Enter date of post."
+          placeholder: "yyyy-mm-dd"
+          alterable: true
+      - name: "published"
+        field:
+          element: "checkbox"
+          label: "Publish"
+          help: "Check to publish post, uncheck to hide."
+      - name: "locale"
+        field:
+          element: "select"
+          label: "Language"
+          help: "es: Spanish, en: English, fr: French, it: Italian"
+          options:
+          - name: "es"
+            value: "es"
+          - name: "en"
+            value: "en"
+          - name: "fr"
+            value: "fr"
+          - name: "it"
+            value: "it"
+
+      - name: "category"
+        field:
+          element: "select"
+          label: "Category"
+          placeholder: "Select a category"
+          options:
+          - name: "Business Intelligence (ES)"
+            value: "business_intelligence"
+
+      - name: "share-img"
+        field:
+          element: "text"
+          label: "Social network image"
+          help: "Enter the url"
+
+gems:
+  - jekyll-paginate-v2
+
+mailchimp-list: https://geartranslations.us10.list-manage.com/subscribe/post-json?u=5e0a31131f04ee72c5575a1ea&amp;id=f2ed9f5348&c=?
+
+# Beautiful Jekyll / Dean Attali
+# 2fc73a3a967e97599c9763d05e564189
+
+# Translations
+t:
+  en:
+    index: "/"
+    welcome: Welcome to our blog
+    follow-us: "Follow us:"
+    post-index: Index
+    posts:
+      recent: Recent posts
+      categories: Categories
+      category: Category
+    legal:
+      terms-and-conditions: Terms and conditions of use
+      cookies-policy: Cookie policy
+      privacy-policy: Privacy policy and legal notice
+      terms-and-conditions-link: https://www.geartranslations.com/en/legal-texts/terms-and-conditions
+      cookies-policy-link: https://www.geartranslations.com/en/legal-texts/cookies-policy
+      privacy-policy-link: https://www.geartranslations.com/en/legal-texts/privacy-policy
+    newsletter:
+      title: "Subscribe to our news"
+      subtitle: "Fill in the following form to keep up to date with our news"
+      subscribe: "Subscribe to our blog"
+      submit: Submit
+      invalid-email-message: Invalid Email
+      already-subscribed: Email already subscribed
+      terms-not-accepted: You have to agree to the terms to continue
+      thank-you: Thank you for subscribing!
+      accept-terms: "I have read and accept the <a href='https://clients.geartranslations.com/terms/3?locale=en' target='_blank'>Terms&Conditions</a> and the <a href='https://clients.geartranslations.com/privacy_policies/2?locale=en' target='_blank'>Privacy Policy</a> currently in force at Spotter"
+    nav:
+      language:
+        title: Language
+        spanish: Spanish
+        english: English
+    index:
+      name: Index
+      url: "/blog/"
+    all:
+      name: "All posts"
+      url: "/blog/"
+    categories-title: Categories
+    categories:
+  es:
+    index: "/es"
+    welcome: Bienvenido a nuestro blog
+    follow-us: "Síguenos en:"
+    post-index: "Índice"
+    posts:
+      recent: Entradas recientes
+      categories: Categorías
+      category: Categoría
+    legal:
+      terms-and-conditions: Términos y condiciones de uso
+      cookies-policy: Política de cookies
+      privacy-policy: Política de privacidad y aviso legal
+      terms-and-conditions-link: https://www.geartranslations.com/es/textos-legales/terminos-y-condiciones
+      cookies-policy-link: https://www.geartranslations.com/es/textos-legales/politica-de-cookies
+      privacy-policy-link: https://www.geartranslations.com/es/textos-legales/politica-de-privacidad
+    newsletter:
+      title: "Suscríbete a nuestras noticias"
+      subtitle: "Rellena el siguiente formulario para estar al día de nuestras novedades"
+      subscribe: "Suscríbete al blog"
+      submit: Enviar
+      invalid-email-message: Email inválido
+      already-subscribed: Email ya suscrito
+      terms-not-accepted: Acepta los términos para continuar
+      thank-you: ¡Gracias por suscribirte!
+      accept-terms: "He leído y acepto los <a href='https://clients.geartranslations.com/terms/4?locale=es' target='_blank'>Términos y Condiciones</a> y la <a href='https://clients.geartranslations.com/privacy_policies/1?locale=es' target='_blank'>Política de Privacidad</a> de Spotter"
+    nav:
+      language:
+        title: Idioma
+        spanish: Español
+        english: Inglés
+    index:
+      name: Inicio
+      url: "/blog/es/"
+    all:
+      name: "Todos los posts"
+      url: "/blog/es/"
+    categories-title: Categorías
+    categories:
+      business_intelligence:
+        name: "Business Intelligence"
+        url: "/blog/es/business_intelligence/"
+        raw: business_intelligence

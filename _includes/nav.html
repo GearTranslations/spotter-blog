@@ -1,0 +1,63 @@
+<nav class="navbar-custom pt-5 pb-4">
+  <div>
+    <div class="row">
+      <div class="container-fluid">
+        <div class="navbar-header navbar-right">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="collapse navbar-collapse" id="main-navbar">
+          <div class="col-sm-2">
+            <a href="https://www.spotter.biz"><img src="{{ site.baseurl }}/img/favicon.png" alt="Spotter" width=100></a>
+          </div>
+          <div class="col-sm-7 pt-4">
+            <ul class="horizontal-ul">
+            {% for link in site.t[page.locale].menu %}
+              {% if link.list %}
+                <li class="dropdown">
+                  <a class="dropdown-button" href="{{ link.internal-url || '#'}}">
+                    {{ link.name }}
+                  </a>
+                  <ul class="dropdown-content vertical-ul">
+                  {% for sublink in link.url %}
+                    {% if sublink.list %}
+                      <li class="dropright">
+                        <a class="dropright-button" href="{{ sublink.internal-url || '#'}}">
+                          {{ sublink.name }}
+                        </a>
+                        <ul class="dropright-content vertical-ul">
+                        {% for subsublink in sublink.url %}
+                          <li>
+                            {% include navbarlink.html link=subsublink %}
+                          </li>
+                        {% endfor %}
+                        </ul>
+                      </li>
+                    {% else %}
+                      <li>
+                        {% include navbarlink.html link=sublink %}
+                      </li>
+                    {% endif %}
+                  {% endfor %}
+                  </ul>
+                </li>
+              {% else %}
+                <li>
+                  {% include navbarlink.html link=link %}
+                </li>
+              {% endif %}
+            {% endfor %}
+            </ul>
+          </div>
+          <div class="col-sm-3 text-align-right index">
+            <a href="{{ site.t[page.locale].index.url }}">{{ site.t[page.locale].index.name }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
