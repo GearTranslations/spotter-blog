@@ -133,7 +133,7 @@ exclude:
 
 # prose.io config
 prose:
-  rooturl: '_posts'
+  rooturl: 'tree/master/_posts'
   media: 'img'
   ignore:
     - 404.html
@@ -179,17 +179,12 @@ prose:
         field:
           element: "select"
           label: "Language"
-          help: "es: Spanish, en: English, fr: French, it: Italian"
+          help: "es: Spanish, en: English"
           options:
           - name: "es"
             value: "es"
           - name: "en"
             value: "en"
-          - name: "fr"
-            value: "fr"
-          - name: "it"
-            value: "it"
-
       - name: "category"
         field:
           element: "select"
@@ -198,7 +193,6 @@ prose:
           options:
           - name: "Business Intelligence (ES)"
             value: "business_intelligence"
-
       - name: "share-img"
         field:
           element: "text"
