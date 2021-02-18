@@ -11,7 +11,7 @@ share-img: /img/que-es-business-intelligence.jpg
 
 Una definición simple y directa de Business Intelligence, BI, es: 
 
-**La obtención, análisis y posterior utilización de los datos de una organización para optimizar la toma de decisiones empresariales.**
+**la obtención, análisis y posterior utilización de los datos de una organización para optimizar la toma de decisiones empresariales.**
 
 Pero, en el día a día, denominamos Business Intelligence al conjunto de metodologías y tecnologías que sirven para recopilar y transformar los datos, de información a conocimiento útil.
 
