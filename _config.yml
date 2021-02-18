@@ -240,9 +240,9 @@ t:
         title: Language
         spanish: Spanish
         english: English
-    index:
-      name: Index
-      url: "/blog/"
+      index:
+        name: Index
+        url: "/blog/"
     all:
       name: "All posts"
       url: "/blog/"
@@ -279,9 +279,9 @@ t:
         title: Idioma
         spanish: Español
         english: Inglés
-    index:
-      name: Inicio
-      url: "/blog/es/"
+      index:
+        name: Inicio
+        url: "/blog/es/"
     all:
       name: "Todos los posts"
       url: "/blog/es/"
